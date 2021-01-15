@@ -182,7 +182,7 @@ e, pertanto, $f\left(1-\frac{1}{\alpha}\right)$ risulta essere un massimo per $f
 %\renewcommand{\questiontype}{Task}
 
 \section{} %------ ESERCIZIO 2 ---------------------------------------
-Sia  \(\mathcal{G}=(\mathcal{V}, \varepsilon, W)\) un grafo di ordine \(n = | \mathcal{V}| \geq 2\) privo di self loop tale che ogni nodo abbia grado uscente \(\omega_1 > 0\). Si considera un gioco tra i giocatori \(\mathcal{V}\), ciascuno con spazio delle azioni \(\mathcal{A} = \mathbb{R}\) e funzioni di utilità
+Sia  \(\mathcal{G}=(\mathcal{V}, \varepsilon, W)\) un grafo di ordine \(n = | \mathcal{V}| \geq 2\) privo di self loop tale che ogni nodo abbia grado uscente \(\omega_i > 0\). Si considera un gioco tra i giocatori \(\mathcal{V}\), ciascuno con spazio delle azioni \(\mathcal{A} = \mathbb{R}\) e funzioni di utilità
 \begin{gather*}
   u_i(x)=- \frac{x_i^2}{2}+ c_i x_i + \beta \sum\limits_{j \neq i} W_{ij}x_j x_i 
 \end{gather*} 
@@ -247,7 +247,7 @@ con \(i \in \mathcal{V} \), \(\beta \geq 0\) e \(c \in \mathbb{R}^{\mathcal{V}}\
   \begin{gather*}
     z = \left(I - \left(\frac{1-\beta_k}{\lambda_W}\right)W'\right)^{-1}\beta_k \mu
   \end{gather*}
-  Poiché \(\beta_k\) e \(\mu\) sono rispettivamente uno scalare e un vettore che rappresentano parametri arbitrari relativi alla \textit{centralità intrinseca}, è possibile porre i seguenti valori:
+  Poiché \(\beta_k\) e \(\mu\) sono rispettivamente il fattore di attenuazione della rete e il vettore di \textit{centralità intrinseca}, entrambi scelti arbitrariamente, è possibile porre i seguenti valori:
   \begin{gather*}
     \beta_k = 1-\beta \lambda_W \\
     \mu = \frac{1}{\beta_k}\mathbbm{1}.
@@ -318,6 +318,65 @@ con \(i \in \mathcal{V} \), \(\beta \geq 0\) e \(c \in \mathbb{R}^{\mathcal{V}}\
   
 
   \questionpart
+  \begin{figure}[htb]\centering
+    \includegraphics[scale=0.40]{Grafo.jpg}
+      \end{figure}
+  Siano
+  \begin{gather*}
+    \pi_a = \{1 , 2, 3, 9, 10, 11\}\\
+    \pi_b = \{4, 5, 7, 8\}\\
+    \pi_c = \{6\}
+  \end{gather*}
+  i gruppi di simmetria del grafo in figura. Supponiamo che
+  \begin{align*}
+    z_i = z_a && \forall i \in \pi_a \\
+    z_i = z_b && \forall i \in \pi_b \\
+    z_6 = z_c.\\
+  \end{align*}
+  Vale inoltre il seguente:
+  \begin{gather*}
+    z = M\mathbbm{1} = (I-\beta W')^{-1}\mathbbm{1} \Rightarrow (I-\beta W')z = \mathbbm{1} \\
+    \Rightarrow z = \mathbbm{1} + \beta W' z
+  \end{gather*}
+  Si ottiene quindi il seguente sistema:
+  \begin{gather*}
+    \begin{cases}
+      z_a = 1 + \beta (2z_a + 2z_b)\\
+      z_b = 1+ \beta (3z_a + z_b + z_c)\\
+      z_c = 1+ 4\beta z_b
+    \end{cases}
+  \end{gather*}
+  da cui si ottengono le seguenti soluzioni:
+  \begin{align*}
+    \begin{cases}
+      z_{1a} = 1.72 \\
+      z_{1b}= 1.87 \\
+      z_{1c} = 1.75
+    \end{cases} && \begin{cases}
+      z_{2a} = 7.77 \\
+      z_{2b} = 9.16 \\
+      z_{2c} = 8.33
+    \end{cases}
+  \end{align*}
+  Dove \(z_1\) e \(z_2\) rappresentano i vettori di centralità di Katz calcolati rispettivamente nel caso in cui \(\beta = 0.1\) e \(\beta = 0.2\). Analogamente siano \(M^1 = (I-0.1W)^{-1}\) e \(M^2 = (I-0.2W)^{-1}\), si ottengono i seguenti risultati:
+  \begin{align*}
+    \begin{cases}
+      M^1_a = 1.06\\
+      M^1_b = 1.07\\
+      M^1_c = 1.05
+    \end{cases} &&
+    \begin{cases}
+      M^2_a = 1.85\\
+      M^2_b = 2.08\\
+      M^2_c = 1.66
+    \end{cases}
+  \end{align*}
+  Dove \(M_{ii} = M_k \) \(\forall i \in \pi_k\) , \(k=\{a,b,c\}\).\\
+  In entrambi i casi i nodi che massimizzano il rapporto \(z_i^2 / M_{ii}\) sono quelli del gruppo \(b\), infatti:
+  \begin{align*}
+    \frac{z_{1b}^2}{M_b^1}=3.281 && \frac{z_{2b}^2}{M_b^2}=40.33 
+  \end{align*}
+
 
 \end{alphaparts}
 \end{document}
