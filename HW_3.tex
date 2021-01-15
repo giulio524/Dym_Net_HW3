@@ -1,7 +1,7 @@
 \documentclass[11pt,largemargins]{homework}
 
-\newcommand{\hwname}{Alfredo Baione}
-\newcommand{\hwemail}{s279328@studenti.polito.it}
+\newcommand{\hwname}{Giulio Nenna}
+\newcommand{\hwemail}{s245717@studenti.polito.it}
 \newcommand{\hwtype}{Homework}
 \newcommand{\hwnum}{3}
 \newcommand{\hwclass}{}
@@ -277,7 +277,7 @@ con \(i \in \mathcal{V} \), \(\beta \geq 0\) e \(c \in \mathbb{R}^{\mathcal{V}}\
   \questionpart %--------------------------------------------------------
   Eliminando un qualsiasi giocatore \(i\) dal gioco, le proprietà della matrice \(W^{(-i)}\) sono le stesse della matrice \(W\). Pertanto se continua a valere \ref{eq:2} allora la matrice \((I-\beta W^{(-1)})\) è ancora substocastica. In particolare se \(c = \mathbbm{1}\) allora, grazie al criterio di Neuman esiste ed è unico un vettore \(x^{*(-i)}\) tale che 
   \begin{gather*}
-    x^{*(-i)}  = (I-\beta W^{(-1)})^{-1} \mathbbm{1}
+    x^{*(-i)}  = (I-\beta W^{(-i)})^{-1} \mathbbm{1}
   \end{gather*}
 
   \questionpart 
@@ -288,21 +288,36 @@ con \(i \in \mathcal{V} \), \(\beta \geq 0\) e \(c \in \mathbb{R}^{\mathcal{V}}\
   \questionpart%---------------------------------------------------------
   Sia \(\mathcal{V}^{(-i)} := \mathcal{V}\backslash \{i\}\). Sappiamo che \(M\) e \(M^{(-i)}\) sono matrici con elementi non negativi, quindi:
   \begin{gather*}
-    y = \sum \limits_{j \in \mathcal{V}} x_j^* = \sum \limits_{j \in \mathcal{V}} (M\mathbbm{1})_j = \sum \limits_{i \in \mathcal{ V}} \sum \limits_{j \in \mathcal{ V}} M_{ij} > 0   
-    \\  y^{(-i)} = \sum \limits_{j \neq i} x_j^{*(-i)} = \sum \limits_{j \in \mathcal{V}^{(-i)}} (M\mathbbm{1})_j = \sum \limits_{i \in \mathcal{ V}^{(-i)}} \sum \limits_{j \in \mathcal{ V}^{(-i)}} M^{(-i)}_{ij} > 0   
+    y = \sum \limits_{j \in \mathcal{V}} x_j^* = \sum \limits_{j \in \mathcal{V}} (M\mathbbm{1})_j = \sum \limits_{j \in \mathcal{ V}} \sum \limits_{k \in \mathcal{ V}} M_{jk} > 0   
+    \\  y^{(-i)} = \sum \limits_{j \neq i} x_j^{*(-i)} = \sum \limits_{j \in \mathcal{V}^{(-i)}} (M\mathbbm{1})_j = \sum \limits_{j \in \mathcal{ V}^{(-i)}} \sum \limits_{k \in \mathcal{ V}^{(-i)}} M^{(-i)}_{jk} > 0   
   \end{gather*}
-  per questo motivo vale:
+  Inoltre vale:
   \begin{gather*}
-    \argmax \limits_{i \in \mathcal{V}} y - y^{(-i)} = \argmin \limits_{i \in \mathcal{V}} y^{(-i)} = 
-    \argmin \limits_{i \in \mathcal{V}}\left( \sum \limits_{i \in \mathcal{ V}^{(-i)}} \sum \limits_{j \in \mathcal{ V}^{(-i)}} M^{(-i)}_{ij}  \right).
+    z_i = \sum \limits_{j \in \mathcal{V}} M_{ij} \Rightarrow \frac{z_i^2}{M_{ii}} =\frac{1}{M_{ii}} \sum \limits_{j \in \mathcal{V}} \sum \limits_{k \in \mathcal{V}} M_{ij}M_{ik} 
   \end{gather*}
-  Utilizzando il punto (g) si ottiene:
+  Utilizzando il punto (g) e considerando \(M_{jk}^{(-i)}=0\) se \(j = i\) oppure \(k=i\) , vale:
   \begin{gather*}
-    \argmin \limits_{i \in \mathcal{V}}\left( \sum \limits_{i \in \mathcal{ V}^{(-i)}} \sum \limits_{j \in \mathcal{ V}^{(-i)}} M^{(-i)}_{ij}  \right) = \argmin \limits_{i \in \mathcal{V}}\sum \limits_{i \in \mathcal{ V}^{(-i)}} \sum \limits_{j \in \mathcal{ V}^{(-i)}} \left(\frac{M_{ii}M_{jk}-M_{ij}M_{ik}}{M_{ii}}\right) = \\
-    \argmin \limits_{i \in \mathcal{V}} \left(\sum \limits_{i \in \mathcal{ V}^{(-i)}} \sum \limits_{j \in \mathcal{ V}^{(-i)}} M_{jk}- \sum \limits_{i \in \mathcal{ V}^{(-i)}} \sum \limits_{j \in \mathcal{ V}^{(-i)}} \frac{M_{ij}M_{ik}}{M_{ii}} \right) = \\
-    \argmax \limits_{i \in \mathcal{V}} \left(\sum \limits_{i \in \mathcal{ V}^{(-i)}} \sum \limits_{j \in \mathcal{ V}^{(-i)}} \frac{M_{ij}M_{ik}}{M_{ii}} \right).
+    \frac{1}{M_{ii}} \sum \limits_{j \in \mathcal{V}} \sum \limits_{k \in \mathcal{V}} M_{ij}M_{ik} = \frac{1}{M_{ii}}\sum \limits_{j \in \mathcal{V}} \sum \limits_{k \in \mathcal{V}} M_{ii}(M_{jk}-M_{jk}^{(-i)}) = \\
+     \sum \limits_{j \in \mathcal{V}} \sum \limits_{k \in \mathcal{V}} M_{jk} - \sum \limits_{j \in \mathcal{V}} \sum \limits_{k \in \mathcal{V}} M_{jk}^{(-i)} = \sum \limits_{j \in \mathcal{V}} \sum \limits_{k \in \mathcal{V}} M_{jk} - \sum \limits_{j \in \mathcal{V}^{(-i)}} \sum \limits_{k \in \mathcal{V}^{(-i)}} M_{jk}^{(-i)} =
+     \\ y - y^{(-i)}
   \end{gather*}
-  Inoltre vale la seguente:
+  Utilizzando tutti questi risultati si ottiene quindi
+  \begin{gather*}
+    \frac{z_i^2}{M_{ii}} =  y - y^{(-i)}  \Rightarrow \argmax \limits_{i \in \mathcal{V}} y - y^{(-i)} = \argmax \limits_{i \in \mathcal{V}}\frac{z_i^2}{M_{ii}}
+  \end{gather*}
+  %\begin{gather*}
+    %\argmax \limits_{i \in \mathcal{V}} y - y^{(-i)} = \argmin \limits_{i \in \mathcal{V}} y^{(-i)} = 
+   % \argmin \limits_{i \in \mathcal{V}}\left( \sum \limits_{j \in \mathcal{ V}^{(-i)}} \sum \limits_{k \in \mathcal{ V}^{(-i)}} M^{(-i)}_{jk}  \right).
+ % \end{gather*}
+  %Utilizzando il punto (g) si ottiene:
+  %\begin{gather*}
+   % \argmin \limits_{i \in \mathcal{V}}\left( \sum \limits_{j \in \mathcal{ V}^{(-i)}} \sum \limits_{k \in \mathcal{ V}^{(-i)}} M^{(-i)}_{jk}  \right) = \argmin \limits_{i \in \mathcal{V}}\sum \limits_{j \in \mathcal{ V}^{(-i)}} \sum \limits_{k \in \mathcal{ V}^{(-i)}} \left(\frac{M_{ii}M_{jk}-M_{ij}M_{ik}}{M_{ii}}\right) = \\
+   % \argmin \limits_{i \in \mathcal{V}} \left(\sum \limits_{j \in \mathcal{ V}^{(-i)}} \sum \limits_{k \in \mathcal{ V}^{(-i)}} M_{jk}- \sum \limits_{j \in \mathcal{ V}^{(-i)}} \sum \limits_{k \in \mathcal{ V}^{(-i)}} \frac{M_{ij}M_{ik}}{M_{ii}} \right) = \\
+   % \argmax \limits_{i \in \mathcal{V}} \left(\sum \limits_{j \in \mathcal{ V}^{(-i)}} \sum \limits_{k \in \mathcal{ V}^{(-i)}} \frac{M_{ij}M_{ik}}{M_{ii}} \right).
+  %\end{gather*}
   
+
+  \questionpart
+
 \end{alphaparts}
 \end{document}
