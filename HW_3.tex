@@ -24,6 +24,8 @@
 \usepackage{subcaption}
 \usepackage{amsmath}
 \DeclareMathOperator*{\argmax}{argmax}
+\DeclareMathOperator*{\argmin}{argmin}
+
 
 \begin{document}
 \maketitle
@@ -278,11 +280,29 @@ con \(i \in \mathcal{V} \), \(\beta \geq 0\) e \(c \in \mathbb{R}^{\mathcal{V}}\
     x^{*(-i)}  = (I-\beta W^{(-1)})^{-1} \mathbbm{1}
   \end{gather*}
 
-  \questionpart %---------------------------------------------------------
-  Se \(c = \mathbbm{1}\) allora \(y =  \sum \limits_{i=1}^{n} x_i^* =  \sum \limits_{i=1}^{n} z_i\), dove \(z\) è il vettore di centralità di Katz come è stato definito al punto (d). Pertanto se il \textit{key-player} è quel giocatore \(i^*\) la cui rimozione comporti la maggior riduzione di y allora vale:
+  \questionpart 
+  Per ogni \(k \neq i \neq j\) vale:
   \begin{gather*}
-    i^* = \argmax \limits_{i \in \mathcal{V}} z_i.
+    M_{ij}M_{ik} = M_{ii}(M_{ij}-M_{ij}^{(-i)}).
   \end{gather*}
+  \questionpart%---------------------------------------------------------
+  Sia \(\mathcal{V}^{(-i)} := \mathcal{V}\backslash \{i\}\). Sappiamo che \(M\) e \(M^{(-i)}\) sono matrici con elementi non negativi, quindi:
+  \begin{gather*}
+    y = \sum \limits_{j \in \mathcal{V}} x_j^* = \sum \limits_{j \in \mathcal{V}} (M\mathbbm{1})_j = \sum \limits_{i \in \mathcal{ V}} \sum \limits_{j \in \mathcal{ V}} M_{ij} > 0   
+    \\  y^{(-i)} = \sum \limits_{j \neq i} x_j^{*(-i)} = \sum \limits_{j \in \mathcal{V}^{(-i)}} (M\mathbbm{1})_j = \sum \limits_{i \in \mathcal{ V}^{(-i)}} \sum \limits_{j \in \mathcal{ V}^{(-i)}} M^{(-i)}_{ij} > 0   
+  \end{gather*}
+  per questo motivo vale:
+  \begin{gather*}
+    \argmax \limits_{i \in \mathcal{V}} y - y^{(-i)} = \argmin \limits_{i \in \mathcal{V}} y^{(-i)} = 
+    \argmin \limits_{i \in \mathcal{V}}\left( \sum \limits_{i \in \mathcal{ V}^{(-i)}} \sum \limits_{j \in \mathcal{ V}^{(-i)}} M^{(-i)}_{ij}  \right).
+  \end{gather*}
+  Utilizzando il punto (g) si ottiene:
+  \begin{gather*}
+    \argmin \limits_{i \in \mathcal{V}}\left( \sum \limits_{i \in \mathcal{ V}^{(-i)}} \sum \limits_{j \in \mathcal{ V}^{(-i)}} M^{(-i)}_{ij}  \right) = \argmin \limits_{i \in \mathcal{V}}\sum \limits_{i \in \mathcal{ V}^{(-i)}} \sum \limits_{j \in \mathcal{ V}^{(-i)}} \left(\frac{M_{ii}M_{jk}-M_{ij}M_{ik}}{M_{ii}}\right) = \\
+    \argmin \limits_{i \in \mathcal{V}} \left(\sum \limits_{i \in \mathcal{ V}^{(-i)}} \sum \limits_{j \in \mathcal{ V}^{(-i)}} M_{jk}- \sum \limits_{i \in \mathcal{ V}^{(-i)}} \sum \limits_{j \in \mathcal{ V}^{(-i)}} \frac{M_{ij}M_{ik}}{M_{ii}} \right) = \\
+    \argmax \limits_{i \in \mathcal{V}} \left(\sum \limits_{i \in \mathcal{ V}^{(-i)}} \sum \limits_{j \in \mathcal{ V}^{(-i)}} \frac{M_{ij}M_{ik}}{M_{ii}} \right).
+  \end{gather*}
+  Inoltre vale la seguente:
   
 \end{alphaparts}
 \end{document}
